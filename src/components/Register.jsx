@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 export const Register = () => {
 
     const navigate = useNavigate();
+    const [loader,setLoader]=useState(false);
+
     const [error,setError]=useState(false);
     const initialValues= {
         firstname:'',
@@ -18,7 +20,7 @@ export const Register = () => {
         password:''
     };
   const uri = 'https://expense-tracker-api-u7ew.onrender.com';
-    // const uri = 'http://localhost:4002';
+    // const uri = 'https://test-api-jflu.onrender.com';
 
     const RegisterSchema = Yup.object().shape({
 
@@ -37,6 +39,7 @@ export const Register = () => {
 
     
     async function sendData(values){
+        setLoader(true)
         try {
             await axios.post(`${uri}/register`,{
                 "firstname":values.firstname,
@@ -44,7 +47,7 @@ export const Register = () => {
                 "email":values.email,
                 "username":values.username,
                 "password":values.password
-            });
+            }).then(()=>setLoader(false))
             navigate('/login');
         } catch (error) {
             console.log(error);
@@ -137,7 +140,12 @@ export const Register = () => {
                 className={(isValid)?"bg-blue-600 px-6 py-3 mx-auto rounded-lg":'bg-red-600 px-6 py-3 mx-auto rounded-lg'}
                 disabled={!(isValid)}
               >
-                Sign Up
+                {
+                  loader == true ?
+                  <div className="spinner"></div> :
+                   "Sign Up" 
+                }
+                
               </button>
             </div>
             </Form>

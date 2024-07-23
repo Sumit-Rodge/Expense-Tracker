@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.spinner{
+    width: 20px;
+    height: 20px;
+    border: 4px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spinner 0.7s linear infinite;
+  }
+
+  @keyframes spinner{
+    from{}
+      to{
+        transform: rotate(360deg);
+      }
+  }
+
+  .tenor-gif-embed {
+    height: 400px;
+}

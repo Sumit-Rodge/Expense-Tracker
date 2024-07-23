@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export const Login = () => {
 
   const [encryptedCookieValue,setEncryptedCookieValue] = useContext(CookieContext);
+  const [loader,setLoader]=useState(false);
+
 
   function setCookie(){
     setEncryptedCookieValue(document.cookie.split('=')[1]);
@@ -22,10 +24,11 @@ export const Login = () => {
   }
   const navigate = useNavigate();
   const [error,setError] = useState(false);
-  // const uri = 'http://localhost:4002';
+  // const uri = 'https://test-api-jflu.onrender.com';
   const uri = 'https://expense-tracker-api-u7ew.onrender.com';
 
   async function sendData(values){
+    setLoader(true)
     try {
       await axios.post(`${uri}/login`,{
         "email":values.email,
@@ -36,6 +39,7 @@ export const Login = () => {
     .then((data)=>{
       document.cookie = `token=${data.data}`;
     })
+    .then(()=>setLoader(false))
     setCookie();
     console.log(encryptedCookieValue)
     showLoginSuccess();
@@ -90,15 +94,22 @@ export const Login = () => {
                   <ErrorMessage name="password" component="span" className='text-red-500'/> 
                   {error?<p className='text-red-500'>Invalid Email or Password</p>:''}
                 </div>
-
+              <div className='flex flex-col'>
               <Link to='/register' className='text-green-700 hover:text-blue-50'>Don't have an account?</Link>
+              <Link to='/password' className='text-green-700 hover:text-blue-50'>Forgot password?</Link>
+              </div>
               <div className='flex my-4'>
                 <button
                   type="submit"
                   className={(isValid)?"bg-blue-600 px-6 py-3 mx-auto rounded-lg":'bg-red-600 px-6 py-3 mx-auto rounded-lg'}
                   disabled={!(dirty && isValid)}
                 >
-                  Log In
+                  {
+                    loader == true ?
+                    <div className="spinner"></div> :
+                    "Log In"
+                  }
+                  
                 </button>
               </div>
               </Form>

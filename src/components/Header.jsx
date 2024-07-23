@@ -25,7 +25,7 @@ export const Header = () => {
         </Link>
         
       }
-      <Link to='/charts' >Charts</Link>  
+      {/* <Link to='/charts' >Charts</Link>   */}
         
     </div>
   )

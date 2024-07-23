@@ -7,10 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const uri = 'https://expense-tracker-api-u7ew.onrender.com';
-  // const uri = 'http://localhost:4002';
+  // const uri = 'https://test-api-jflu.onrender.com';
 
   const [expenses,setExpenses]=useState([]);
   const [amount,setAmount]=useState('');
+  const [loader,setLoader]=useState(false);
   const [description,setDescription]=useState('');
   const [categories,setCategories]=useState(['Food','Entertainment','Education','Health','Lend','Transport','Others']);
   const [selectedCategory,setSelectedCategory]=useState(categories[0]);
@@ -21,9 +22,13 @@ export const Home = () => {
   
 //  console.log(document.cookie)  
   async function getData(){
+      setLoader(true)
       try {
         await axios.get(`${uri}/user/${encryptedCookieValue}`)
         .then(dataa=>setExpenses(dataa.data))
+        .then(()=>{
+          setLoader(false)
+        })
       } catch (error) {
         console.log(error)
       }
@@ -32,15 +37,19 @@ export const Home = () => {
 
   async function handleAddExpense(){
     try {
+      setLoader(true)
       await axios.put(`${uri}/addexpense/${encryptedCookieValue}`,{
         "amount":amount,
         "description":description,
         "category":selectedCategory
-      });
-      getData();
+      }).then(async()=>{
+        await getData();
+      })
+      .then(()=>showTaskSuccess())
+      
       setAmount('');
       setDescription('');
-      showTaskSuccess();
+      
     } catch (error) {
       console.log(error)
     }
@@ -57,15 +66,16 @@ export const Home = () => {
 
   async function deleteExpense(e){
     const taskid=e.target.id;
-    console.log(e.target.id)
     try {
       // await axios.put(`${uri}/removeexpense/${encryptedCookieValue}/${taskid}`,{
+      setLoader(true)
       await axios.put(`${uri}/deleteexpense`,{
         "encryptedCookieValue":encryptedCookieValue,
         "taskid":taskid
-      });
-      getData();
-      showTaskFailure();
+      }).then(async()=>{
+        await getData();
+      })
+      .then(()=>showTaskFailure())
     } catch (error) {
       console.log(error)
     }
@@ -110,7 +120,14 @@ export const Home = () => {
                 }
               </select>
             </div>
-            <button className='bg-green-700 p-3 rounded-lg font-mono px-4 w-fit  mt-4' onClick={handleAddExpense}>Add Expense</button>
+            <button className='bg-green-700 p-3 rounded-lg font-mono px-4 w-fit  mt-4  min-w-28 flex justify-center items-center' data-load={loader} onClick={handleAddExpense}>
+            {
+              loader == false ? 
+              "Expense"
+             :
+             <div className="spinner"></div>
+            }
+            </button>
           </div>
 
           {/* show expenses */}

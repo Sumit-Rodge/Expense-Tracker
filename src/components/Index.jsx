@@ -6,6 +6,7 @@ import { Home } from './Home';
 import { Header } from './Header';
 import { CookieContext } from '../context/cookieContext';
 import { Charts } from './Charts';
+import { Password } from './Password';
 
 export const Index = () => {
 const [encryptedCookieValue,setEncryptedCookieValue]= useState(document.cookie.split('=')[1]);
@@ -19,6 +20,7 @@ const [encryptedCookieValue,setEncryptedCookieValue]= useState(document.cookie.s
         <Route path='/login' element={<Login/>}/>
         <Route path='/register'element={<Register/>} />
         <Route path='/charts'element={<Charts/>} />
+        <Route path='/password'element={<Password/>} />
       </Routes>
     </CookieContext.Provider>
     </BrowserRouter>
