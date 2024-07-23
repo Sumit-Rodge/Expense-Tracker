@@ -21,3 +21,33 @@
   .tenor-gif-embed {
     height: 400px;
 }
+
+.spinner-disabled {
+  display: none !important;
+}
+
+.spinner-enabled {
+  display: block;
+}
+
+#root {
+  position: relative;
+}
+
+.spinner-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff30;
+  overflow: hidden;
+}
+
+.spinner-parent .spinner {
+  height: 40px;
+  width: 40px;
+}

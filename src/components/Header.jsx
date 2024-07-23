@@ -13,7 +13,7 @@ export const Header = () => {
   }
 
   return (
-    <div className='pl-4 h-12 flex items-center *:px-2 bg-gray-500  text-white font-mono text-xs'>
+    <div className='pl-4 h-12 flex items-center *:px-2 bg-gray-500  text-white font-mono text-xs relative z-10'>
       <Link to='/' className='underline underline-offset-8  p-1 rounded-lg w-fit hover:text-red-600'>
             Home  
         </Link>

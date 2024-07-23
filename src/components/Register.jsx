@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { SpinnerContext } from '../context/spinnerContext';
 
 
 export const Register = () => {
 
     const navigate = useNavigate();
-    const [loader,setLoader]=useState(false);
+    const [spinner,setSpinner] = useContext(SpinnerContext)
 
     const [error,setError]=useState(false);
     const initialValues= {
@@ -19,8 +20,8 @@ export const Register = () => {
         email:'',
         password:''
     };
-  const uri = 'https://expense-tracker-api-u7ew.onrender.com';
-    // const uri = 'https://test-api-jflu.onrender.com';
+  // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
+    const uri = 'https://test-api-jflu.onrender.com';
 
     const RegisterSchema = Yup.object().shape({
 
@@ -39,7 +40,7 @@ export const Register = () => {
 
     
     async function sendData(values){
-        setLoader(true)
+      setSpinner(true)
         try {
             await axios.post(`${uri}/register`,{
                 "firstname":values.firstname,
@@ -47,7 +48,7 @@ export const Register = () => {
                 "email":values.email,
                 "username":values.username,
                 "password":values.password
-            }).then(()=>setLoader(false))
+            }).then(()=>setSpinner(false))
             navigate('/login');
         } catch (error) {
             console.log(error);
@@ -65,7 +66,7 @@ export const Register = () => {
       {(formik) => {
         const { isValid, dirty } = formik;
         return (
-          <div className="w-1/4 text-sm">
+          <div className="w-full md:w-1/4 p-4 md:p-0 text-sm">
             <h1 className='text-3xl font-mono text-center'>Register</h1>
             <Form>
 
@@ -141,7 +142,7 @@ export const Register = () => {
                 disabled={!(isValid)}
               >
                 {
-                  loader == true ?
+                  spinner === true ?
                   <div className="spinner"></div> :
                    "Sign Up" 
                 }

@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 import { CookieContext } from '../context/cookieContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SpinnerContext } from '../context/spinnerContext';
 
 export const Login = () => {
 
   const [encryptedCookieValue,setEncryptedCookieValue] = useContext(CookieContext);
-  const [loader,setLoader]=useState(false);
+  const [spinner,setSpinner] = useContext(SpinnerContext)  
 
 
   function setCookie(){
@@ -24,11 +25,11 @@ export const Login = () => {
   }
   const navigate = useNavigate();
   const [error,setError] = useState(false);
-  // const uri = 'https://test-api-jflu.onrender.com';
-  const uri = 'https://expense-tracker-api-u7ew.onrender.com';
+  const uri = 'https://test-api-jflu.onrender.com';
+  // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
 
   async function sendData(values){
-    setLoader(true)
+    setSpinner(true)
     try {
       await axios.post(`${uri}/login`,{
         "email":values.email,
@@ -39,7 +40,7 @@ export const Login = () => {
     .then((data)=>{
       document.cookie = `token=${data.data}`;
     })
-    .then(()=>setLoader(false))
+    .then(()=>setSpinner(false))
     setCookie();
     console.log(encryptedCookieValue)
     showLoginSuccess();
@@ -71,7 +72,7 @@ export const Login = () => {
         {(formik)=>{
           const {isValid , dirty} = formik;
           return (
-            <div className='w-1/4 text-sm'>
+            <div className='w-full md:w-1/4  p-4 md:p-0 text-sm'>
               <h1 className='text-3xl font-mono text-center'>Login</h1>
               <Form>
 
@@ -105,7 +106,7 @@ export const Login = () => {
                   disabled={!(dirty && isValid)}
                 >
                   {
-                    loader == true ?
+                    spinner === true ?
                     <div className="spinner"></div> :
                     "Log In"
                   }
