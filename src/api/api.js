@@ -46,7 +46,7 @@ app.post('/login',async (req,res)=>{
                 maxAge: 1000*60*30,
                 // httpOnly: true
             };
-            res.cookie('token',token,options);
+            // res.cookie('token',token,options);
             res.sendStatus(200);
         }else{
             res.sendStatus(401);

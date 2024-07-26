@@ -6,7 +6,7 @@ export const Password = () => {
   function navigateBack(){
     setTimeout(() => {
         navigate('/login')
-    }, 6000);
+    }, 10000);
   }  
   return (
     <div className='bg-gray-900 h-screen w-full flex justify-center text-white items-center overflow-hidden flex-col p-4 md:p-0'>

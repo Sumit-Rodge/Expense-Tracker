@@ -38,7 +38,7 @@ export const Login = () => {
       withCredentials:true
     })
     .then((data)=>{
-      document.cookie = `token=${data.data}`;
+      document.cookie = `token=${data.data};maxAge=1000*60*30`;
     })
     .then(()=>setSpinner(false))
     setCookie();

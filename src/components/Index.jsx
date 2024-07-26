@@ -25,7 +25,7 @@ const [spinner,setSpinner]=useState(false);
         <Route path='/charts'element={<Charts/>} />
         <Route path='/password'element={<Password/>} />
       </Routes>
-      <Spinner/>
+      {/* <Spinner/> */}
     </SpinnerContext.Provider>  
     </CookieContext.Provider>
     </BrowserRouter>

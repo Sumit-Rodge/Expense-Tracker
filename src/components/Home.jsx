@@ -69,7 +69,7 @@ export const Home = () => {
     const taskid=e.target.id;
     try {
       // await axios.put(`${uri}/removeexpense/${encryptedCookieValue}/${taskid}`,{
-        setSpinner(true)
+        setSpinner(false) 
       await axios.put(`${uri}/deleteexpense`,{
         "encryptedCookieValue":encryptedCookieValue,
         "taskid":taskid
@@ -84,10 +84,13 @@ export const Home = () => {
   }
   
   useEffect(()=>{
-    if(!encryptedCookieValue){
+    if(encryptedCookieValue === undefined){
+      setSpinner(false)
       navigate('/login')
-    };
-    getData();
+    }else{
+      getData();
+    }
+    
   },[])
   return (
     <div className='bg-gray-900 h-screen w-full flex   text-white flex-col  py-7 md:py-14 px-4 md:px-10'>
