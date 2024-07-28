@@ -86,9 +86,9 @@ const showUpdateSuccess = ()=>{
   // Delete an expense
   async function deleteExpense(e){
     const taskid=e.target.id;
+    setSpinner(true) 
     try {
       // await axios.put(`${uri}/removeexpense/${encryptedCookieValue}/${taskid}`,{
-        setSpinner(false) 
       await axios.put(`${uri}/deleteexpense`,{
         "encryptedCookieValue":encryptedCookieValue,
         "taskid":taskid
@@ -110,6 +110,7 @@ const showUpdateSuccess = ()=>{
   // Set Expense to Edit an expense
   async function setExpenseToUpdate(e){
     updateRef.current.classList.remove('hidden')
+    setSpinner(true)
     const taskid=e.target.id;
     try {
       await axios.get(`${uri}/getexpenese/${encryptedCookieValue}/${taskid}`)
@@ -118,6 +119,7 @@ const showUpdateSuccess = ()=>{
         setToUpdateDescription(data.data.description);
         setToUpdateCategory(data.data.category)
         setToUpdateExpenseId(data.data.id)
+        setSpinner(false)
       })
     } catch (error) {
       console.log(error)
@@ -127,7 +129,7 @@ const showUpdateSuccess = ()=>{
   
   // Send edited expense to server
   async function editExpense(e){
-    setSpinner(false);
+    setSpinner(true);
     try {
       const taskid=e.target.id;
       await axios.put(`${uri}/editexpense/${encryptedCookieValue}/${taskid}`,{
