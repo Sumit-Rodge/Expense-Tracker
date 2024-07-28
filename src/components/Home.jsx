@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SpinnerContext } from '../context/spinnerContext';
 
 export const Home = () => {
-  const uri = 'http://localhost:4002';
+  // const uri = 'http://localhost:4002';
 
-  // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
+  const uri = 'https://expense-tracker-api-u7ew.onrender.com';
   // const uri = 'https://test-api-jflu.onrender.com';
 
   const [expenses,setExpenses]=useState([]);

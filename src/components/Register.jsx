@@ -20,9 +20,9 @@ export const Register = () => {
         email:'',
         password:''
     };
-  const uri = 'http://localhost:4002';
+  // const uri = 'http://localhost:4002';
 
-  // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
+  const uri = 'https://expense-tracker-api-u7ew.onrender.com';
     // const uri = 'https://test-api-jflu.onrender.com';
 
     const RegisterSchema = Yup.object().shape({

@@ -25,10 +25,10 @@ export const Login = () => {
   }
   const navigate = useNavigate();
   const [error,setError] = useState(false);
-  const uri = 'http://localhost:4002';
+  // const uri = 'http://localhost:4002';
 
   // const uri = 'https://test-api-jflu.onrender.com';
-  // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
+  const uri = 'https://expense-tracker-api-u7ew.onrender.com';
 
   async function sendData(values){
     setSpinner(true)
