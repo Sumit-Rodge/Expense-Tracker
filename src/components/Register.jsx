@@ -24,7 +24,7 @@ export const Register = () => {
 
   // const uri = 'https://expense-tracker-api-u7ew.onrender.com';
   // const uri = 'https://test-api-jflu.onrender.com';
-  const uri = 'https://expense-api-wine.vercel.app/';
+  const uri = 'https://expense-api-wine.vercel.app';
 
     const RegisterSchema = Yup.object().shape({
 
