@@ -1,0 +1,21 @@
+🚀 Excited to Share My Latest Project: Expense Tracker! 💰
+
+I’m thrilled to announce that I’ve developed a Minimum Viable Product (MVP) for an Expense Tracker application using the MERN stack! This project has been a great learning experience and I’m continuously working to enhance its features.
+
+🔧 Technologies Used:
+
+Frontend: React.js with Tailwind CSS for sleek and responsive styling.
+Backend: Express.js for server-side logic.
+Database: MongoDB to efficiently manage and store data.
+Security: Implemented bcrypt for password hashing and JWT for secure authentication.
+
+💡 Current Features:
+
+User Registration & Login: Secure user authentication and personalized user experience.
+Add Expenses: Easily log your expenses with details such as amount, category, and date.
+Edit Expenses: Modify any details of your logged expenses to keep your records accurate.
+Delete Expenses: Remove any expenses that are no longer needed.
+Expense List View: View all your expenses in an organized list for easy tracking.
+This is just the beginning, and I’m excited about the possibilities for further development. Stay tuned for more updates!
+
+#MERNStack #ReactJS #MongoDB #ExpressJS #TailwindCSS #WebDevelopment #ExpenseTracker #FullStackDevelopment
